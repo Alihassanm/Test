@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Admins</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Title</th>
+      <th>Officenumber</th>
+      <th>Email</th>
+      <th>Phonenumber</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admins.each do |admin| %>
+      <tr>
+        <td><%= admin.firstname %></td>
+        <td><%= admin.lastname %></td>
+        <td><%= admin.title %></td>
+        <td><%= admin.officenumber %></td>
+        <td><%= admin.email %></td>
+        <td><%= admin.phonenumber %></td>
+        <td><%= link_to 'Show', admin %></td>
+        <td><%= link_to 'Edit', edit_admin_path(admin) %></td>
+        <td><%= link_to 'Destroy', admin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<h3> Import Faculty</h3>
+<%= form_tag import_admins_path, multipart: true do %>
+  <%= file_field_tag :file  %>
+  <%= submit_tag "Upload Admins"%>
+<%end %>
+
+<%= link_to 'New Admin', new_admin_path %>
